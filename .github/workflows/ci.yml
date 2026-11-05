@@ -1,23 +1,19 @@
-name: Lesson 57 CI
+name: Lesson 58 - Build Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show current directory
-        run: pwd
+      - name: Build Docker image
+        run: docker build -t myapp:${{ github.sha }} .
 
-      - name: Show files
-        run: ls -la
-
-      - name: Run application
-        run: bash hello.sh
+      - name: Verify image
+        run: docker image ls myapp
