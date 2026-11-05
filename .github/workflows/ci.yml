@@ -1,0 +1,23 @@
+name: Lesson 57 CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show current directory
+        run: pwd
+
+      - name: Show files
+        run: ls -la
+
+      - name: Run application
+        run: bash hello.sh
